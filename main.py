@@ -9,7 +9,7 @@ for id, name, surname, phone, email, city_id in out:
 
 name = input('Введите имя клиента: ')
 surname = input('Введите фамилию клиента: ')
-phone = input('Введите тел клиента: ')
+phone = input('Введите тел клиент: ')
 email = input('Введите емейл клиента: ')
 city_id = input('Введите город клиента: ')
 sql = f'INSERT INTO client (name, surname, phone, email, city_id) VALUES ("{name}", "{surname}","{phone}","{email}", {city_id})'
