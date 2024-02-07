@@ -1,87 +1,37 @@
-import sqlite3
-con = sqlite3.connect('clienr_city.db')
-cursor = con.cursor()
-sql = 'SELECT client.id, client.name,client.surname, client.phone, client.email,city.name FROM client, city WHERE client.city_id=city.id'
-out = cursor.execute(sql).fetchall()
+class stud:
+    id=0
+    fio=''
+    id_project = ''
+    clas = ''
+    score = 0
+students=[]
+f=open('students.csv')
+j=0
+for i in f:
+    s=i.split(',')
+    if int(s[3][:-1]) ==10:
+        students.append(stud())
+        students[j].fio = s[1]
+        students[j].id = int(s[0])
+        students[j].score = int(s[4])
+        j+=1
+for i in range(len(students)):
+    j=i
+    t=students[i]
+    st=students[i].score
+    while j>0 and students[j-1].score>st:
+        students[j]=students[j-1]
+        j-=1
+    students[j]=t
+for k in range(len(students)):
+    l=k
+    m=students[k]
+    sm=students[k].id
+    while l>0 and students[l-1].score>sm:
+        students[l]=students[l-1]
+        l-=1
+    students[l]=m
 
-for id, name, surname, phone, email, city_id in out:
-    print(id, name, surname, phone, email, city_id)
-
-name = input('Введите имя клиента: ')
-surname = input('Введите фамилию клиента: ')
-phone = input('Введите тел клиент: ')
-email = input('Введите емейл клиента: ')
-city_id = input('Введит город клиента: ')
-sql = f'INSERT INTO client (name, surname, phone, email, city_id) VALUES ("{name}", "{surname}","{phone}","{email}", {city_id})'
-cursor.execute(sql)
-con.commit()
-
-id=input('удален')
-sql = f'DELETE FROM client WHERE id = {id}'
-cursor.execute(sql)
-con.commit()
-
-id=input('id клиента, почту которого вы хотите изменить')
-email = input('почта клиента, на которую хотите измененить')
-sql = f'UPDATE client SET email = "{email}" WHERE id={id}'
-cursor.execute(sql)
-con.commit()
-def select_client():
-    print('список клиентов')
-    sql='SELECT * FROM clients'
-    out=cursor.execute(sql).fetchall()
-    for id in out:
-        print(*id)
-def add_client():
-    name=input('введите имя клиента')
-    sql=f'INSERT INTO clients (name) VALUES("{name}")'
-    cursor.execute(sql)
-    con.commit()
-    print('клиент добавлен')
-
-def add_city():
-    name=input('введите название города')
-    sql=f'INSERT INTO city (name) VALUES ("{name}")'
-    cursor.execute(sql)
-    con.commit()
-    print('город добавлен')
-
-def change_client():
-    id = input('введите id client')
-    sql = f'UPDATE client SET name = ("{name}") WHERE id=({id}))'
-    cursor.execute(sql)
-    con.commit()
-    print('данные обновлены')
-
-def delete_client():
-    id=input('введите айди клиента')
-    sql=f'DELETE FROM clients WHERE id = ("{id}")'
-    cursor.execute(sql)
-    con.commit()
-    print('клиент удален')
-
-def menu():
-    print('''
-меню:
-1)просмотреть список клиента
-2)добавить клиента
-3)удалить клиента
-4)добавить город
-5)изменить данные клиента''')
-    select_menu=int(input('Введите пункт меню'))
-    print()
-    if select_menu == 1:
-        select_client()
-    elif select_menu == 2:
-        add_client()
-    elif select_menu == 3:
-        delete_client()
-    elif select_menu == 4:
-        add_city()
-    elif select_menu == 5:
-        delete_client()
-    else:
-        exit()
-    menu()
-
-menu()
+print(students[-1].fio, students[-1].id, students[-1].score)
+print(students[-2].fio, students[-2].id, students[-2].score)
+print(students[-3].fio, students[-3].id, students[-3].score)
