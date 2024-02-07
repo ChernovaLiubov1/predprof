@@ -16,7 +16,7 @@ sql = f'INSERT INTO client (name, surname, phone, email, city_id) VALUES ("{name
 cursor.execute(sql)
 con.commit()
 
-id=input('удаление')
+id=input('удален')
 sql = f'DELETE FROM client WHERE id = {id}'
 cursor.execute(sql)
 con.commit()
