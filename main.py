@@ -11,7 +11,7 @@ name = input('Введите имя клиента: ')
 surname = input('Введите фамилию клиента: ')
 phone = input('Введите тел клиент: ')
 email = input('Введите емейл клиента: ')
-city_id = input('Введите город клиента: ')
+city_id = input('Введит город клиента: ')
 sql = f'INSERT INTO client (name, surname, phone, email, city_id) VALUES ("{name}", "{surname}","{phone}","{email}", {city_id})'
 cursor.execute(sql)
 con.commit()
